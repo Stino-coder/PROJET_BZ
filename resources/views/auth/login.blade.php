@@ -12,7 +12,7 @@
                      class="w-auto h-auto max-h-16 sm:max-h-20 md:max-h-24 lg:max-h-28 object-contain transition-transform duration-300 hover:scale-105"
                      style="width: clamp(120px, 40vw, 200px); height: auto;">
             </div>
-            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-red-600">Système de Paie KAMOA</h1>
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-red-600">Système de Paie</h1>
             <p class="text-xs sm:text-sm text-gray-500 mt-1">Accès sécurisé au système</p>
         </div>
 

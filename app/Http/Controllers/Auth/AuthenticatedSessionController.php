@@ -33,7 +33,9 @@ class AuthenticatedSessionController extends Controller
         if ($user->role === 'admin') {
             return redirect()->route('admin');
 
-        }else{
+        }
+        elseif ($user->role === 'user') {
+            
              return redirect()->route('mes_profiles.users_accueille');
         }
 

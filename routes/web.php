@@ -9,6 +9,7 @@ use App\Http\Controllers\CandidatController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PayrollController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin',[Controller::class,'admin'])->name('admin');
     route::get('employeeView',[EmployeeController::class,'employeeView'])->name('employeeView');
     route::get('payrollView',[PayrollController::class,'payrollView'])->name('payrollView');
+    route::get('user',[AuthenticatedSessionController::class,'store'])->name('mes_profiles.users_accueille');
+
+    Route::get('/employeeView',[EmployeeController::class,'employeeView'])->name('employeeView');
+    Route::post('/employee/nouveau',[EmployeeController::class,'createEmployee'])->name('nouveauemployee');
     
+
    
 });
 

@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,115 +10,85 @@
     <!-- Custom CSS -->
     <style>
         :root {
-            --primary-color: #d9230f; /* Rouge */
-            --secondary-color: #000000; /* Noir */
-            --light-color: #ffffff; /* Blanc */
+            --primary-color: #d9230f;
+            /* Rouge */
+            --secondary-color: #000000;
+            /* Noir */
+            --light-color: #ffffff;
+            /* Blanc */
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
         }
-        
+
         .navbar {
             background-color: var(--secondary-color);
         }
-        
-        .navbar-brand, .nav-link {
+
+        .navbar-brand,
+        .nav-link {
             color: var(--light-color) !important;
         }
-        
+
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
         }
-        
+
         .btn-primary:hover {
             background-color: #b51d0d;
             border-color: #b51d0d;
         }
-        
+
         .card-header {
             background-color: var(--primary-color);
             color: var(--light-color);
         }
-        
+
         .sidebar {
             background-color: var(--secondary-color);
             color: var(--light-color);
             min-height: 100vh;
         }
-        
+
         .sidebar .nav-link {
             color: var(--light-color) !important;
             margin-bottom: 5px;
         }
-        
+
         .sidebar .nav-link:hover {
             background-color: var(--primary-color);
         }
-        
+
         .sidebar .nav-link.active {
             background-color: var(--primary-color);
             font-weight: bold;
         }
-        
+
         .employee-photo {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
         }
-        
+
         .status-active {
             color: #28a745;
         }
-        
+
         .status-inactive {
             color: #dc3545;
         }
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 d-md-block sidebar collapse bg-dark">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard.html">
-                                <i class="bi bi-speedometer2"></i> Tableau de bord
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="employees.html">
-                                <i class="bi bi-people-fill"></i> Employés
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="payroll.html">
-                                <i class="bi bi-cash-stack"></i> Gestion de paie
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="leaves.html">
-                                <i class="bi bi-calendar3"></i> Gestion des congés
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reports.html">
-                                <i class="bi bi-graph-up"></i> Rapports
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="settings.html">
-                                <i class="bi bi-gear-fill"></i> Paramètres
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+            @include('partials.navbar')
 
             <!-- Main content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
@@ -184,7 +154,8 @@
                             <table class="table table-striped table-hover align-middle">
                                 <thead>
                                     <tr>
-                                        <th>Photo</th>
+
+
                                         <th>Matricule</th>
                                         <th>Nom & Prénom</th>
                                         <th>Poste</th>
@@ -200,12 +171,7 @@
                                         <td>
                                             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Photo" class="employee-photo">
                                         </td>
-                                        <td>EMP-1001</td>
-                                        <td>Dupont Jean</td>
-                                        <td>Chef de projet</td>
-                                        <td>IT</td>
-                                        <td>15/06/2018</td>
-                                        <td>3,200.00 €</td>
+
                                         <td><span class="badge bg-success">Actif</span></td>
                                         <td>
                                             <div class="btn-group" role="group">
@@ -225,12 +191,7 @@
                                         <td>
                                             <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Photo" class="employee-photo">
                                         </td>
-                                        <td>EMP-1002</td>
-                                        <td>Lambert Marie</td>
-                                        <td>Responsable RH</td>
-                                        <td>RH</td>
-                                        <td>22/03/2015</td>
-                                        <td>4,500.00 €</td>
+
                                         <td><span class="badge bg-success">Actif</span></td>
                                         <td>
                                             <div class="btn-group" role="group">
@@ -250,12 +211,7 @@
                                         <td>
                                             <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Photo" class="employee-photo">
                                         </td>
-                                        <td>EMP-1003</td>
-                                        <td>Martin Pierre</td>
-                                        <td>Comptable</td>
-                                        <td>Comptabilité</td>
-                                        <td>10/01/2020</td>
-                                        <td>2,800.00 €</td>
+
                                         <td><span class="badge bg-warning">En congé</span></td>
                                         <td>
                                             <div class="btn-group" role="group">
@@ -275,7 +231,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         <!-- Pagination -->
                         <nav aria-label="Page navigation" class="mt-4">
                             <ul class="pagination justify-content-center">
@@ -297,6 +253,7 @@
     </div>
 
     <!-- Add Employee Modal -->
+
     <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -305,69 +262,110 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="post" action="{{ route('nouveauemployee') }}" class="main_form" enctype="multipart/form-data">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="firstName" class="form-label">Prénom</label>
-                                <input type="text" class="form-control" id="firstName" required>
+                                <label for="prenom" class="form-label">Prénom</label>
+                                <input type="text" name="prenom" class="contactus" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="lastName" class="form-label">Nom</label>
-                                <input type="text" class="form-control" id="lastName" required>
+                                <label for="nom" class="form-label">Nom</label>
+                                <input type="text" name="nom" class="contactus" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="postnom" class="form-label">Postnom</label>
+                                <input type="text" name="postnom" class="contactus" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" name="email" class="contactus" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="banque" class="form-label">Banque</label>
+                                <input type="text" name="banque" class="contactus" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nationalite" class="form-label">Nationalité</label>
+                                <input type="text" name="nationalite" class="contactus" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="date_naissance" class="form-label">Date de naissance</label>
+                                <input type="date" name="date_naissance" class="contactus" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="situation_matrimoniale" class="form-label">Situation matrimoniale</label>
+                                <input type="text" name="situation_matrimoniale" class="contactus" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="numero_compte" class="form-label">Numéro de compte</label>
+                                <input type="number" name="numero_compte" class="contactus" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Téléphone</label>
-                                <input type="tel" class="form-control" id="phone">
+                                <input type="text" name="telephone" class="contactus" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="hireDate" class="form-label">Date d'embauche</label>
-                                <input type="date" class="form-control" id="hireDate" required>
+                                <input type="date" name="date_embauche" class="contactus" required>
                             </div>
+
                             <div class="col-md-6">
-                                <label for="position" class="form-label">Poste</label>
-                                <input type="text" class="form-control" id="position" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="department" class="form-label">Département</label>
-                                <select class="form-select" id="department" required>
-                                    <option value="" selected disabled>Sélectionner...</option>
-                                    <option>RH</option>
-                                    <option>Comptabilité</option>
-                                    <option>IT</option>
-                                    <option>Commercial</option>
-                                    <option>Production</option>
+                                <label for="contrat_id" class="form-label">Contrat</label>
+                                <select name="contrat_id" class="form-control" required>
+                                    <option value="">Sélectionner un contrat</option>
+                                    @foreach($contrat as $c)
+                                    <option value="{{ $c->contrat_id}}">{{ $c->type }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="salary" class="form-label">Salaire mensuel</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control" id="salary" required>
-                                    <span class="input-group-text">€</span>
-                                </div>
+                                <label for="department_id" class="form-label">Département</label>
+                                <select name="department_id" class="form-control" required>
+                                    <option value="">Sélectionner un département</option>
+                                    @foreach($department as $d)
+                                    <option value="{{ $d->departement_id }}">{{ $d->nom_department }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+
                             </div>
                             <div class="col-12">
                                 <label for="address" class="form-label">Adresse</label>
-                                <textarea class="form-control" id="address" rows="2"></textarea>
+                                <textarea class="form-control" name="adresse" rows="2"></textarea>
                             </div>
                             <div class="col-md-6">
                                 <label for="photo" class="form-label">Photo</label>
-                                <input class="form-control" type="file" id="photo">
+                                <input class="form-control" type="file" name="photo" id="photo">
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" type="submit">Enregistrer</button>
+                            <button class="btn btn-warning" type="reset">Annuler</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary">Enregistrer</button>
-                </div>
+
             </div>
         </div>
     </div>
-
+    @if(Session::has('success'))
+    <div class="alert alert-success text-right">
+        <button type="button" class="btn btn-close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        {{Session::get('success')}}
+    </div>
+    @endif
+    @if(Session::has('fails'))
+    <div class="alert alert-danger text-right">
+        <button type="button" class="btn btn-close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        {{Session::get('fails')}}
+    </div>
+    @endif
     <!-- View Employee Modal -->
     <div class="modal fade" id="viewEmployeeModal" tabindex="-1" aria-labelledby="viewEmployeeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -468,4 +466,5 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </body>
+
 </html>
