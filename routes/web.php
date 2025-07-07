@@ -46,7 +46,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/employeeView',[EmployeeController::class,'employeeView'])->name('employeeView');
     Route::post('/employee/nouveau',[EmployeeController::class,'createEmployee'])->name('nouveauemployee');
-    
+    Route::delete('/employee/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+
+    Route::get('/admin/payroll', [EmployeeController::class, 'adminPayrollView'])->name('admin.payroll');
 
    
 });

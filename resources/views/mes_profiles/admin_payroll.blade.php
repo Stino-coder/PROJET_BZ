@@ -208,50 +208,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($employees as $emp)
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Photo" class="rounded-circle me-2" width="32" height="32">
-                                                <span>Jean Dupont</span>
+                                                @if($emp->photo)
+                                                    <img src="{{ asset('storage/photos/' . $emp->photo) }}" alt="Photo" class="rounded-circle me-2" width="32" height="32">
+                                                @else
+                                                    <span>-</span>
+                                                @endif
+                                                <span>{{ $emp->nom }} {{ $emp->prenom }}</span>
                                             </div>
                                         </td>
-                                        <td>EMP-1001</td>
-                                        <td>IT</td>
-                                        <td>3,200.00 €</td>
-                                        <td>150.00 €</td>
-                                        <td>85.00 €</td>
-                                        <td>450.00 €</td>
-                                        <td><strong>2,985.00 €</strong></td>
-                                        <td><span class="badge payslip-status-paid">Payé</span></td>
+                                        <td>{{ $emp->matricule ?? '' }}</td>
+                                        <td>{{ $emp->department->nom_department ?? '' }}</td>
+                                        <td>{{ $emp->salaire ?? '' }}</td>
+                                        <td>{{ $emp->heures_supp ?? '0' }}</td>
+                                        <td>{{ $emp->avantages ?? '0' }}</td>
+                                        <td>{{ $emp->retenues ?? '0' }}</td>
+                                        <td><strong>{{ $emp->net_a_payer ?? '' }}</strong></td>
                                         <td>
-                                            <div class="btn-group" role="group">
-                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#payslipDetailModal">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-secondary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-printer"></i>
-                                                </button>
-                                            </div>
+                                            <span class="badge payslip-status-paid">Payé</span>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Photo" class="rounded-circle me-2" width="32" height="32">
-                                                <span>Marie Lambert</span>
-                                            </div>
-                                        </td>
-                                        <td>EMP-1002</td>
-                                        <td>RH</td>
-                                        <td>4,500.00 €</td>
-                                        <td>0.00 €</td>
-                                        <td>120.00 €</td>
-                                        <td>630.00 €</td>
-                                        <td><strong>3,990.00 €</strong></td>
-                                        <td><span class="badge payslip-status-paid">Payé</span></td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <button class="btn btn-sm btn-outline-primary">
@@ -266,36 +244,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Photo" class="rounded-circle me-2" width="32" height="32">
-                                                <span>Pierre Martin</span>
-                                            </div>
-                                        </td>
-                                        <td>EMP-1003</td>
-                                        <td>Comptabilité</td>
-                                        <td>2,800.00 €</td>
-                                        <td>75.00 €</td>
-                                        <td>0.00 €</td>
-                                        <td>392.00 €</td>
-                                        <td><strong>2,483.00 €</strong></td>
-                                        <td><span class="badge payslip-status-pending">En attente</span></td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <button class="btn btn-sm btn-outline-primary">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-secondary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-printer"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- More payslip rows... -->
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

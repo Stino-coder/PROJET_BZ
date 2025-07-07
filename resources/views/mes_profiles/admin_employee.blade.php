@@ -158,6 +158,7 @@
 
                                         <th>Matricule</th>
                                         <th>Nom & Prénom</th>
+                                        <th>Photo</th>
                                         <th>Poste</th>
                                         <th>Département</th>
                                         <th>Date d'embauche</th>
@@ -167,12 +168,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($employees as $emp)
                                     <tr>
+                                        <td>{{ $emp->matricule ?? '' }}</td>
+                                        <td>{{ $emp->nom }} {{ $emp->prenom }}</td>
                                         <td>
-                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Photo" class="employee-photo">
+                                            @if($emp->photo)
+                                            <a href="{{ asset('storage/photos/' . $emp->photo) }} "><img src="{{ asset('storage/photos/' . $emp->photo) }}" alt="Photo" class="employee-photo"></a>
+                                            @else
+                                            -
+                                            @endif
                                         </td>
-
-                                        <td><span class="badge bg-success">Actif</span></td>
+                                        <td>{{ $emp->poste ?? '' }}</td>
+                                        <td>{{ $emp->department->nom_department ?? '' }}</td>
+                                        <td>{{ $emp->date_embauche }}</td>
+                                        <td>{{ $emp->salaire ?? '' }}</td>
+                                        <td>
+                                            <span class="badge bg-success">Actif</span>
+                                        </td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewEmployeeModal">
@@ -181,53 +194,17 @@
                                                 <button class="btn btn-sm btn-outline-secondary">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
+                                                <form action="{{ route('employee.destroy', $emp->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet employé ?')">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Photo" class="employee-photo">
-                                        </td>
-
-                                        <td><span class="badge bg-success">Actif</span></td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <button class="btn btn-sm btn-outline-primary">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-secondary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Photo" class="employee-photo">
-                                        </td>
-
-                                        <td><span class="badge bg-warning">En congé</span></td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <button class="btn btn-sm btn-outline-primary">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-secondary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- More employee rows... -->
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -290,8 +267,15 @@
                                 <input type="text" name="nationalite" class="contactus" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="date_naissance" class="form-label">Date de naissance</label>
-                                <input type="date" name="date_naissance" class="contactus" required>
+                                <label for="date_de_naissance" class="form-label">Date de naissance</label>
+                                <input type="date" name="date_de_naissance" class="contactus" required>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="sexe" class="form-select">
+                                    <option selected>sexe</option>
+                                    <option>masculin</option>
+                                    <option>feminin</option>
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="situation_matrimoniale" class="form-label">Situation matrimoniale</label>
@@ -351,19 +335,18 @@
         </div>
     </div>
     @if(Session::has('success'))
-    <div class="alert alert-success text-right">
-        <button type="button" class="btn btn-close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-        {{Session::get('success')}}
+    <div class="alert alert-success alert-dismissible fade show text-end" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        {{ Session::get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
     </div>
     @endif
+
     @if(Session::has('fails'))
-    <div class="alert alert-danger text-right">
-        <button type="button" class="btn btn-close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-        {{Session::get('fails')}}
+    <div class="alert alert-danger alert-dismissible fade show text-end" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ Session::get('fails') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
     </div>
     @endif
     <!-- View Employee Modal -->
